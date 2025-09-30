@@ -37,3 +37,12 @@ jobs:
             echo "No hay pruebas configuradas"
           fi
 
+      # 🚀 Paso nuevo: Despliegue a InfinityFree
+      - name: Deploy to InfinityFree via FTP
+        uses: SamKirkland/FTP-Deploy-Action@4.3.2
+        with:
+          server: ftpupload.net
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: /htdocs/
+          local-dir: ./   # cambia si solo quieres subir una carpeta (ej: ./public o ./dist)
