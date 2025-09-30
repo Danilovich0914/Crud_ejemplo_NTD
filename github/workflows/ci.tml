@@ -1,0 +1,39 @@
+name: PHP Workflow
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v3
+
+      - name: Configurar PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+
+      - name: Instalar dependencias (si usas composer)
+        run: |
+          if [ -f composer.json ]; then
+            composer install --no-progress --no-suggest
+          fi
+
+      - name: Verificar sintaxis PHP
+        run: |
+          find . -type f -name "*.php" -exec php -l {} \;
+
+      - name: Ejecutar pruebas (si tienes PHPUnit)
+        run: |
+          if [ -f vendor/bin/phpunit ]; then
+            ./vendor/bin/phpunit
+          else
+            echo "No hay pruebas configuradas"
+          fi
+
