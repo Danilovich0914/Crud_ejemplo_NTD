@@ -1,3 +1,3 @@
 ## Primera Versión del Trabajo
 
-Version inicial de CRUD modelo vista controlador con un servicio de despliegue infinityfree
+Version inicial de CRUD modelo vista controlador con un servicio de despliegue con Replit
